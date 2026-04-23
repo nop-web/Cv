@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV_Muhammad_Chairun_Nafi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #eff6ff;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            -webkit-print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            padding: 15mm;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            position: relative;
+        }
+
+        @media print {
+            body { background: white; margin: 0; padding: 0; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+            .no-print { display: none !important; }
+        }
+
+        .photo-area {
+            width: 130px;
+            height: 170px;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .photo-area:hover {
+            border-color: var(--secondary);
+            background: var(--accent);
+        }
+
+        #preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .skill-tag {
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid #dbeafe;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bar Navigasi (Hanya muncul di layar) -->
+    <div class="no-print sticky top-0 bg-white/90 backdrop-blur-sm border-b p-4 z-50">
+        <div class="max-w-4xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-2 text-blue-900 font-bold">
+                <i class="fas fa-id-card text-xl"></i>
+                <span>CV Digital Pro</span>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="downloadCV()" class="bg-gray-800 hover:bg-black text-white px-5 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2">
+                    <i class="fas fa-download"></i> Unduh File (.html)
+                </button>
+                <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-blue-200">
+                    <i class="fas fa-print"></i> Cetak ke PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="cv-target">
+        <input type="file" id="upload-photo" class="hidden" accept="image/*" onchange="loadPhoto(event)">
+        
+        <div class="flex gap-10">
+            <!-- Sidebar Kiri (Lebih Kecil) -->
+            <aside class="w-1/3 space-y-8">
+                <!-- Foto Section -->
+                <div class="photo-area shadow-sm" onclick="document.getElementById('upload-photo').click()">
+                
+                    <img id="foto.png" src="foto.png" alt="Foto Profil">
+                </div>
+
+                <!-- Kontak -->
+                <section>
+                    <h2 class="section-title">Kontak</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone text-blue-600 mt-1"></i>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Telepon</p>
+                                <p class="text-sm font-bold">0877 3554 0002</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-envelope text-blue-600 mt-1"></i>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Email</p>
+                                <p class="text-sm font-bold break-all">nafi0500d@gmail.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-blue-600 mt-1"></i>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Alamat</p>
+                                <p class="text-sm font-bold">Jl. Jolontoro Sambek, Wonosobo, Jawa Tengah</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Keahlian -->
+                <section>
+                    <h2 class="section-title">Keahlian</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-slate-600 mb-1">MS. Excel & Office</p>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-full w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-600 mb-1">Kasir & POS System</p>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-full w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-600 mb-1">Akuntansi Dasar</p>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-full w-[80%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Soft Skills -->
+                <section>
+                    <h2 class="section-title">Karakter</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag italic">Adaptasi Cepat</span>
+                        <span class="skill-tag italic">Komunikatif</span>
+                        <span class="skill-tag italic">Teliti</span>
+                        <span class="skill-tag italic">Kerja Tim</span>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Konten Utama Kanan (Lebih Lebar) -->
+            <main class="w-2/3 border-l pl-10">
+                <header class="mb-10">
+                    <h1 class="text-5xl font-black text-slate-900 leading-tight">Muhammad <br><span class="text-blue-700">Chairun Nafi</span></h1>
+                    <div class="h-2 w-20 bg-blue-700 mt-4"></div>
+                    <p class="text-lg font-bold text-slate-400 mt-4 uppercase tracking-[0.1em]">Lulusan Akuntansi 2026</p>
+                </header>
+
+                <div class="space-y-10">
+                    <!-- Ringkasan -->
+                    <section>
+                        <h2 class="section-title">Tentang Saya</h2>
+                        <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                            Lulusan baru Akuntansi dari SMKN 1 Wonosobo yang memiliki latar belakang kuat dalam administrasi keuangan dan operasional pelayanan. Terbiasa bekerja secara dinamis melalui pengalaman sebagai tenaga bantuan operasional. Memiliki dedikasi tinggi, kemampuan belajar yang cepat, dan siap memberikan kontribusi terbaik bagi perusahaan.
+                        </p>
+                    </section>
+
+                    <!-- Pengalaman -->
+                    <section>
+                        <h2 class="section-title">Pengalaman Kerja</h2>
+                        <div class="space-y-6">
+                            <div class="relative">
+                                <div class="flex justify-between items-baseline mb-1">
+                                    <h3 class="font-extrabold text-slate-800 text-base uppercase">Waiters (Inval)</h3>
+                                    <span class="text-[10px] font-bold text-slate-400">Wonosobo</span>
+                                </div>
+                                <p class="text-blue-600 font-bold text-sm mb-3">Allure Square</p>
+                                <ul class="text-sm text-slate-600 space-y-2">
+                                    <li class="flex gap-3">
+                                        <span class="text-blue-600 font-bold">•</span>
+                                        <span>Bertanggung jawab atas pengelolaan transaksi harian melalui sistem kasir.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="text-blue-600 font-bold">•</span>
+                                        <span>Menjamin kepuasan pelanggan melalui pelayanan penyajian yang cepat dan ramah.</span>
+                                    </li>
+                                    <li class="flex gap-3">
+                                        <span class="text-blue-600 font-bold">•</span>
+                                        <span>Menjaga kebersihan operasional area kerja dan penataan inventaris meja.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Pendidikan -->
+                    <section>
+                        <h2 class="section-title">Pendidikan</h2>
+                        <div class="relative">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h3 class="font-extrabold text-slate-800 text-base uppercase">SMKN 1 WONOSOBO</h3>
+                                <span class="text-[10px] font-bold text-slate-400">Lulus 2026</span>
+                            </div>
+                            <p class="text-blue-600 font-bold text-sm mb-2">Jurusan Akuntansi</p>
+                            <p class="text-xs text-slate-500 italic">Mendalami kompetensi laporan keuangan, perpajakan, dan manajemen kas berbasis komputer.</p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="mt-20 pt-10 border-t border-slate-100 text-center">
+                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest leading-loose">
+                        Dokumen ini adalah data asli dan dapat dipertanggungjawabkan.<br>
+                        Wonosobo, Jawa Tengah.
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function loadPhoto(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('preview-img');
+                const icon = document.getElementById('cam-icon');
+                const text = document.getElementById('cam-text');
+                output.src = reader.result;
+                output.style.display = 'block';
+                icon.style.display = 'none';
+                text.style.display = 'none';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function downloadCV() {
+            const originalTitle = document.title;
+            const content = document.documentElement.outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "CV_Muhammad_Chairun_Nafi.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
+
